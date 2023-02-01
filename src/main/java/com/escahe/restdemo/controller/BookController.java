@@ -1,5 +1,7 @@
 package com.escahe.restdemo.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,11 @@ public class BookController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getBookById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(bookService.getById(id));
+        Book bookFound = bookService.getById(id);
+        return ResponseEntity.status(
+                Objects.isNull(bookFound)?HttpStatus.NOT_FOUND:
+                HttpStatus.FOUND
+            ).body(bookFound);
     }
 
 
