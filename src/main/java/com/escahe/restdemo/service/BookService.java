@@ -26,6 +26,7 @@ public class BookService {
     public Book getById(Long id) {
         return bookRepository.findById(id).orElse(null);
     }
+
     public Book update(Book book) {
         Book bookToSave = getById(book.getId());
         if(Objects.nonNull(book.getAuthor())) bookToSave.setAuthor(book.getAuthor());
@@ -35,5 +36,9 @@ public class BookService {
         if(Objects.nonNull(book.getReleaseDate())) bookToSave.setReleaseDate(book.getReleaseDate());
         if(Objects.nonNull(book.getTitle())) bookToSave.setTitle(book.getTitle());
         return save(bookToSave);
+    }
+
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
     }
 }
