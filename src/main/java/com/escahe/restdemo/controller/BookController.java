@@ -14,7 +14,7 @@ import com.escahe.restdemo.model.Book;
 import com.escahe.restdemo.service.BookService;
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/api/book")
 public class BookController {
 
     @Autowired
